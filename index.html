@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>French Learning Website</title>
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/index.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Excel Import Support -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+
+</head>
+<body>
+  <div id="header" class="header">
+    <h2 id="header-text">French Vocabulary Learning</h2>
+  </div>
+
+  <div class="container">
+
+    <button class="btn btn-primary btn-function" onclick="location.href='import.html'">
+      Import
+    </button>
+    <button type="button" class="btn btn-primary btn-function" onclick="location.href='quiz.html'">Take Quiz</button>
+
+    <button type="button" class="btn btn-primary btn-function" onclick="location.href='list.html'">Vocabulary List</button>
+
+
+    <script type="text/javascript" src="js/global-var-defn.js"></script>
+    <script type="text/javascript" src="js/excel-import.js"></script>
+  </div>
+</body>
+</html>

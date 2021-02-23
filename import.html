@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=\, initial-scale=1.0">
+  <title>Import Excel</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/index.css">
+  
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
+    <!-- Excel Import Support -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+</head>
+<body>
+  <div id="header" class="header">
+    <h2 id="header-text">Vocabulary List Import</h2>
+  </div>
+
+  <div class="container">
+    <form id="importForm">
+      <div class="form-group">
+        <label for="importFile">Import your word set here:</label>
+        <input type="file" class="form-control-file" id="importFile">
+      </div>
+    </form>
+
+    <div id="nav">
+      <input type="text" class="btn btn-outline-danger" id="return" value="Return" type="button" onclick="location.href='index.html'">
+    </div>
+  </div>
+
+  <script type="text/javascript" src="js/global-var-defn.js"></script>
+  <script type="text/javascript" src="js/excel-import.js"></script>
+  <script>
+    var importForm = document.getElementById("importFile");
+    importForm.addEventListener("change", fileHandler, false);
+  </script>
+</body>
+</html>

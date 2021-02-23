@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Interactive Quiz</title>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/quiz.css">
+  <link rel="stylesheet" href="css/index.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+
+</head>
+
+<body>
+
+<div id="header" class="header">
+  <h2 id="header-text">Quiz</h2>
+</div>
+
+<div class="container" id="main">
+  <div id="problem-type">
+    <h2 id="problem-type-text">Choose the correct translation</h2>
+  </div>
+
+  <div id="problem-info">
+    <h2 id="problem-description">My First Page</h2>
+  </div>
+  
+
+  <div id="choices">
+    <div class="row">
+      <div class="col col-md-6">
+        <button type="button" id="choice1" class="btn btn-outline-secondary btn-block">
+          Lorem ipsum dolor sit.
+        </button>
+      </div>
+      <div class="col col-md-6">
+        <button type="button" id="choice2" class="btn btn-outline-secondary btn-block">
+          Lorem ipsum dolor sit.
+        </button>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 15px;">
+      <div class="col col-md-6">
+        <button type="button" id="choice3" class="btn btn-outline-secondary btn-block">
+          Lorem ipsum dolor sit.
+        </button>
+      </div>
+      <div class="col col-md-6">
+        <button type="button" id="choice4" class="btn btn-outline-secondary btn-block">
+          Lorem ipsum dolor sit.
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div id="nav">
+    <input type="text" class="btn btn-outline-danger align-left" id="return" value="Return" type="button" onclick="location.href='index.html'">
+    <input class="btn btn-secondary align-right" type="button" id="skip" value="Skip">
+    <input class="btn btn-primary align-right" type="button" id="next" value="Next">
+  </div>
+</div>
+
+<!-- <script src="js/global-var-defn.js"></script> -->
+<script type="text/javascript" src="js/quiz-nav.js"></script>
+
+<script>
+  nextBtn.onclick();
+</script>
+</body>
+</html>

@@ -1,0 +1,21 @@
+*{
+  font-size: 12px;
+}
+
+.container {
+  margin: 10vh 1vw 0 1vw;
+}
+
+#search-conditions {
+  width: 100%;
+}
+
+.range-input {
+  width: 8vw;
+  height: 30px;
+}
+
+.range-select {
+  width: 15vw;
+  height: 30px;
+}
