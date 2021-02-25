@@ -18,12 +18,23 @@ const numOfChoices = 4;
 const commonBtnClass = "btn btn-outline-secondary btn-block"
 const correctBtnClass = "btn btn-success btn-block";
 const incorrectBtnClass = "btn btn-danger btn-block";
+const correctInputClass = "form-control btn-success";
+const incorrectInputClass = "form-control btn-outline-danger";
+const normalInputClass = "form-control";
+
+const MULTIPLE_CHOICE = 0;
+const FILL_IN_THE_BLANK = 1;
+const PRONUNCIATION = 2;
 
 
 var choices = document.getElementsByClassName("btn-block");
 var correct = {};
+var currType = 0;
+var hintCount = 0;
 
 local_init();
+
+
 
 function local_init() {
   for (var i in dataSet) {
@@ -33,6 +44,19 @@ function local_init() {
 }
 
 function updateChoices() {
+  currType = parseInt(Math.random() * 2);
+  if (currType == 0) {
+    multipleChoice();
+  } else if (currType == 1) {
+    fillInTheBlank();
+  }
+}
+
+function multipleChoice() {
+  $("#fill-in-blank").hide();
+  $("#choices").show();
+  $("#hint").hide();
+  
   var questionType = parseInt(Math.random() * 2);
   var answerType = "";
   if (questionType == 0) {
@@ -47,22 +71,6 @@ function updateChoices() {
   questionText.innerHTML = dataSet[correct.btnsInDataset[correct.posInBtn]][questionType];
   btnSubmit();
 }
-
-onClick("next", function() {
-  if (correct.posInBtn < numOfChoices) {
-    var correctBtn = document.getElementById("choice" + (correct.posInBtn+1));
-    correctBtn.className = correctBtnClass;
-    resultUpdate(correct.btnsInDataset[correct.posInBtn], "fail");
-    setTimeout(() => {
-      updateChoices();
-    }, 500);
-  } else {
-    updateChoices();
-  }
-});
-
-onClick("skip", updateChoices);
-
 
 function randomNumGenerator(range, num) {
   var arr = [];
@@ -84,7 +92,7 @@ function randomQuestionGenerator(data, questionType, answerType) {
   }
   var obj = {
     btnsInDataset: answersNum,
-    posInBtn: questionPos
+    posInBtn: parseInt(questionPos)
   };
   return obj;
 }
@@ -102,7 +110,7 @@ function clientAnswer() {
     var objNumInDataSet =correct.btnsInDataset[choiceId];
     resultUpdate(objNumInDataSet, "success");
     
-    console.log(dataSet[correct.btnsInDataset[choiceId]]);
+    // console.log(dataSet[correct.btnsInDataset[choiceId]]);
     updateRecord();
     setTimeout(() => {
       updateChoices();
@@ -140,3 +148,105 @@ function findLeastCorrectWord(a) {
   }
   return minPos;
 }
+
+function fillInTheBlank() {
+  $("#fill-in-blank").show();
+  $("#choices").hide();
+  $("#hint").show();
+  correct = {};
+  correct.ansInDataset = randomNumGenerator(dataLength, 1)[0];
+  var questionText = document.getElementById("problem-description");
+  questionText.innerHTML = dataSet[correct.ansInDataset].en;
+  var clientInput = document.getElementById("blankInput");
+  clientInput.className = "form-control";
+  clientInput.value = "";
+}
+
+
+const specialCharsReg = /[\.,?!"']/ig;
+
+function checkInputAns() {
+  var clientInput = document.getElementById("blankInput")
+  var clientAns = clientInput.value;
+  var ans = dataSet[correct.ansInDataset].fr;
+  clientAns = clientAns.toLowerCase();
+  ans = ans.toLowerCase();
+  clientAns = clientAns.replaceAll(specialCharsReg, '');
+  ans = ans.replaceAll(specialCharsReg, '');
+  if (ans == clientAns) {
+    resultUpdate(correct.ansInDataset, "success");
+    clientInput.className = correctInputClass;
+    setTimeout(() => {
+      updateChoices();
+    }, 500);
+  } else {
+    resultUpdate(correct.ansInDataset, "fail");
+    clientInput.className = incorrectInputClass;
+  }
+  updateRecord();
+}
+
+onClick("next", function() {
+  switch (currType) {
+    case MULTIPLE_CHOICE:
+      if (correct.posInBtn < numOfChoices) {
+        console.log(correct);
+        var correctBtn = document.getElementById("choice" + (correct.posInBtn+1));
+        console.log(correctBtn);
+        correctBtn.className = correctBtnClass;
+        resultUpdate(correct.btnsInDataset[correct.posInBtn], "fail");
+        setTimeout(() => {
+          updateChoices();
+        }, 500);
+      } else {
+        updateChoices();
+      }
+      break;
+
+    case FILL_IN_THE_BLANK:
+      checkInputAns();
+      break;
+
+  }
+  
+});
+
+onClick("skip", updateChoices);
+
+$("#blankInput").keypress(function(event){
+  if (event.keyCode == 13) {
+    event.preventDefault();
+    $("#next").click();
+    return false;
+  }
+});
+
+$("#blankInput").click(function() {
+  $(this).removeClass("btn-outline-danger");
+  // console.log(this);
+});
+
+$("#hint").click(function(){
+  var clientInput = document.getElementById("blankInput");
+  var clientAns = clientInput.value;
+  var ans = dataSet[correct.ansInDataset].fr.toLowerCase();
+  var i = 0;
+  while (i < ans.length) {
+    if (i >= clientAns.length) {
+      clientInput.value = clientAns + ans[i];
+      break;
+    }
+    if (clientAns[i].toLowerCase() != ans[i]) {
+      clientInput.value = clientAns.substring(0, i - 1) + ans[i];
+      break;
+    }
+    i++;
+  }
+});
+
+$(document).keypress(function(event) {
+  if (currType == MULTIPLE_CHOICE) {
+    var choiceId = event.keyCode - 48;
+    $("#choice" + choiceId).click();
+  }
+});
