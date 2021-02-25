@@ -16,7 +16,7 @@ var parseExcel = function(file) {
       localStorage.dataSet = json_obj;
     });
     alert("Import Success!");
-    resetForm();
+    // resetForm();
   };
 
   reader.onerror = function(ex) {
@@ -36,3 +36,12 @@ function resetForm(){
   var form = document.getElementById("importForm");
   form.reset();
 }
+
+var importForm = document.getElementById("importFile");
+importForm.addEventListener("change", fileHandler, false);
+
+// $("#submit").click(function(){
+//   importForm.addEventListener("change", fileHandler, false);
+// });
+
+
