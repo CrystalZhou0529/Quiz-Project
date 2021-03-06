@@ -10,7 +10,6 @@ var parseExcel = function(file) {
     });
 
     workbook.SheetNames.forEach(function(sheetName) {
-      // Here is your object
       var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
       json_obj = JSON.stringify(XL_row_object);
       localStorage.dataSet = json_obj;
@@ -40,8 +39,7 @@ function resetForm(){
 var importForm = document.getElementById("importFile");
 importForm.addEventListener("change", fileHandler, false);
 
-// $("#submit").click(function(){
-//   importForm.addEventListener("change", fileHandler, false);
-// });
+$("#submit").click(function(){
+});
 
 
