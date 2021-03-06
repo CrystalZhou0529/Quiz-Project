@@ -1,18 +1,3 @@
-function Word(){
-  this.en = "";
-  this.fr = "";
-}
-
-function onClick(ele, f) {
-  var obj = document.getElementById(ele);
-  obj.onclick = f;
-}
-
-var nextBtn = document.getElementById("next");
-
-var dataSet = JSON.parse(localStorage.dataSet);
-var dataLength = dataSet.length;
-
 const numOfGames = 10;
 const numOfChoices = 4;
 const commonBtnClass = "btn btn-outline-secondary btn-block"
@@ -27,6 +12,12 @@ const FILL_IN_THE_BLANK = 1;
 const PRONUNCIATION = 2;
 
 
+var nextBtn = document.getElementById("next");
+
+var setName = "";
+var dataSet = [];
+var dataLength = 0;
+
 var choices = document.getElementsByClassName("btn-block");
 var correct = {};
 var currType = 0;
@@ -34,14 +25,25 @@ var hintCount = 0;
 
 local_init();
 
-
-
 function local_init() {
+  var setID = parseInt(window.location.href.split("=")[1]);
+  console.log(setID);
+  setName = "dataSet" + setID;
+  dataSet = JSON.parse(localStorage.getItem(setName));
+  dataLength = dataSet.length;
+
   for (var i in dataSet) {
-    dataSet[i].success = parseInt(dataSet[i].success);
-    dataSet[i].fail = parseInt(dataSet[i].fail);
+    dataSet[i].success = !dataSet[i].success ? 0 : parseInt(dataSet[i].success);
+    dataSet[i].fail = !dataSet[i].fail ? 0 : parseInt(dataSet[i].fail);
   }
+  updateRecord();
 }
+
+function onClick(ele, f) {
+  var obj = document.getElementById(ele);
+  obj.onclick = f;
+}
+
 
 function updateChoices() {
   currType = parseInt(Math.random() * 2);
@@ -120,7 +122,7 @@ function clientAnswer() {
     var correctNumInDataSet = correct.btnsInDataset[correct.posInBtn];
     resultUpdate(objNumInDataSet, "fail");
     resultUpdate(correctNumInDataSet, "fail");
-    console.log(dataSet[objNumInDataSet]);
+    // console.log(dataSet[objNumInDataSet]);
     this.className = incorrectBtnClass;
     updateRecord();
   }
@@ -131,7 +133,8 @@ function resultUpdate(num, type) {
 }
 
 function updateRecord() {
-  localStorage.dataSet = JSON.stringify(dataSet);
+  localStorage.setItem(setName, JSON.stringify(dataSet));
+  console.log(dataSet);
 }
 
 function findLeastCorrectWord(a) {

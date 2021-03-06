@@ -18,10 +18,6 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-  <!-- Excel Import Support -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
 
 </head>
 <body>
@@ -34,44 +30,22 @@
     <button class="btn btn-primary btn-function" onclick="location.href='import.html'">
       Import
     </button>
-    <button type="button" class="btn btn-primary btn-function" onclick="location.href='quiz.html'">Take Quiz</button>
-
-    <button type="button" class="btn btn-primary btn-function" onclick="location.href='list.html'">Vocabulary List</button>
+    
+    <button type="button" id="reset" class="btn btn-primary btn-function">
+      Reset
+    </button>
 
     <div id="cards">
       <div class="row">
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Title 1</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Title 2</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-4">
-          <div class="card">
-            <div class="card-body">
-              <h5 class="card-title">Title 3</h5>
-              <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-              <a href="#" class="btn btn-primary">Go somewhere</a>
-            </div>
-          </div>
-        </div>
+        
       </div>
     </div>
 
     <script type="text/javascript" src="js/global-var-defn.js"></script>
+
+    <script src="js/reset-sets.js"></script>
+
+    <script src="js/card-display.js"></script>
   </div>
 </body>
 </html>

@@ -1,3 +1,14 @@
+var setName = ""
+
+function list_init(){
+  var url = window.location.search;
+  var setID = 0;
+  if (url.indexOf("?") != -1) {
+    setID = window.location.search.split("=")[1];
+  }
+  setName = "dataSet" + setID;
+}
+
 function renderTitleList(theadTr, list, has_count) {
   if (has_count) {
     theadTr.innerHTML = '<th scope="col">#</th>';
@@ -11,8 +22,8 @@ function renderTitleList(theadTr, list, has_count) {
 }
 
 function renderData(tbody, has_count) {
-  console.log(localStorage.dataSet);
-  var data = JSON.parse(localStorage.dataSet);
+  var data = JSON.parse(localStorage.getItem(setName));
+  console.log(data);
   for (var i in data) {
     var tr = document.createElement("tr");
     if (has_count) {
@@ -34,5 +45,7 @@ var tableRender = function() {
   var tbody = document.getElementsByClassName("tbody")[0];
   renderData(tbody, true);
 };
+
+list_init();
 
 tableRender();
