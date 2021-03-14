@@ -10,7 +10,8 @@
 #problem-info {
   padding-top: 10vh;
   padding-bottom: 15vh;
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 #nav{
@@ -26,3 +27,12 @@
   float: left;
 }
 
+#audio-play{
+  border: 0;
+  margin-top: 10px;
+  margin-left: 30px;
+  height: 45px;
+  width: 45px;
+  color: rgba(0, 0, 255, 0.616);
+  cursor:pointer;
+}

@@ -185,9 +185,6 @@ function btnSubmit() {
 }
 
 
-
-
-
 ///////////////////////////////////////////////////////////////////////////////
 //
 // Fill in the blank Core Functions
@@ -226,6 +223,14 @@ function checkInputAns() {
 
 ///////////////////////////////////////////////////////////////////////////////
 //
+// Pronunciation related Core Functions
+//
+///////////////////////////////////////////////////////////////////////////////
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+//
 // Control flow functions
 //
 ///////////////////////////////////////////////////////////////////////////////
@@ -233,11 +238,14 @@ function checkInputAns() {
 // updateChoices() decides the type of the next questions and moves on
 // effects: modifies currType
 function updateChoices() {
-  currType = parseInt(Math.random() * 2);
-  if (currType == 0) {
+  // currType = parseInt(Math.random() * 2);
+  currType = PRONUNCIATION;
+  if (currType == MULTIPLE_CHOICE) {
     multipleChoice();
-  } else if (currType == 1) {
+  } else if (currType == FILL_IN_THE_BLANK) {
     fillInTheBlank();
+  } else if (currType == PRONUNCIATION) {
+    pronunciation();
   }
 }
 
@@ -264,7 +272,11 @@ function multipleChoice() {
   }
   correct = randomQuestionGenerator(dataSet, answerType);
   var questionText = document.getElementById("problem-description");
-  questionText.innerHTML = dataSet[correct.btnsInDataset[correct.posInBtn]][questionType];
+  var question = dataSet[correct.btnsInDataset[correct.posInBtn]][questionType]
+  questionText.innerHTML = question;
+  if (questionType == 'fr') {
+    responsiveVoice.speak(question, 'French Female');
+  }
   btnSubmit();
 }
 
@@ -281,6 +293,22 @@ function fillInTheBlank() {
   correct.ansInDataset = randomNumGenerator(dataLength, 1)[0];
   var questionText = document.getElementById("problem-description");
   questionText.innerHTML = dataSet[correct.ansInDataset].en;
+  var clientInput = document.getElementById("blankInput");
+  clientInput.className = "form-control";
+  clientInput.value = "";
+}
+
+
+// pronunciation() overall manages functions of playing an audio
+function pronunciation() {
+  $("#choices").hide();
+  $("#fill-in-blank").show();
+  $("#hint").show();
+  correct = {};
+  var questionNum = randomNumGenerator(dataLength, 1)[0];
+  correct.ansInDataset = questionNum;
+  $("#audio-play").click();
+  $("#problem-description").text(dataSet[questionNum].en);
   var clientInput = document.getElementById("blankInput");
   clientInput.className = "form-control";
   clientInput.value = "";
@@ -315,6 +343,7 @@ onClick("next", function() {
       break;
 
     case FILL_IN_THE_BLANK:
+    case PRONUNCIATION:
       checkInputAns();
       break;
 
@@ -363,11 +392,16 @@ $("#hint").click(function(){
       break;
     }
     if (clientAns[i].toLowerCase() != ans[i]) {
-      clientInput.value = clientAns.substring(0, i - 1) + ans[i];
+      clientInput.value = clientAns.substring(0, i) + ans[i];
       break;
     }
     i++;
   }
+});
+
+
+$("#audio-play").click(function() {
+  responsiveVoice.speak(dataSet[correct.ansInDataset].fr, 'French Female');
 });
 
 
