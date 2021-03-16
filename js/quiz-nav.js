@@ -238,8 +238,8 @@ function checkInputAns() {
 // updateChoices() decides the type of the next questions and moves on
 // effects: modifies currType
 function updateChoices() {
-  // currType = parseInt(Math.random() * 2);
-  currType = PRONUNCIATION;
+  currType = parseInt(Math.random() * 3);
+  // currType = PRONUNCIATION;
   if (currType == MULTIPLE_CHOICE) {
     multipleChoice();
   } else if (currType == FILL_IN_THE_BLANK) {

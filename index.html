@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -18,34 +19,44 @@
   <!-- Latest compiled JavaScript -->
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Akaya+Telivigala&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Blinker&display=swap" rel="stylesheet">
 
 </head>
+
 <body>
-  <div id="header" class="header">
-    <h2 id="header-text">French Vocabulary Learning</h2>
-  </div>
-
-  <div class="container">
-
-    <button class="btn btn-primary btn-function" onclick="location.href='import.html'">
-      Import
-    </button>
-    
-    <button type="button" id="reset" class="btn btn-primary btn-function">
-      Reset
-    </button>
-
-    <div id="cards">
-      <div class="row">
-        
-      </div>
+  <div class="all">
+    <div id="header" class="header">
+      <h2 id="header-text">French Vocabulary Learning</h2>
     </div>
 
-    <script type="text/javascript" src="js/global-var-defn.js"></script>
+    <div class="main">
 
-    <script src="js/reset-sets.js"></script>
+      <div class="navigation">
+        <button class="btn btn-function" onclick="location.href='import.html'">
+          Import
+        </button>
 
-    <script src="js/card-display.js"></script>
+        <button type="button" id="reset" class="btn btn-function">
+          Reset
+        </button>
+      </div>
+
+      <div id="cards">
+        <div class="row">
+
+        </div>
+      </div>
+
+      <script type="text/javascript" src="js/global-var-defn.js"></script>
+
+      <script src="js/reset-sets.js"></script>
+
+      <script src="js/card-display.js"></script>
+    </div>
   </div>
+
 </body>
+
 </html>

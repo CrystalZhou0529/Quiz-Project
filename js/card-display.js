@@ -21,7 +21,7 @@ function appendCard(row, setName, i) {
   quizBtn.type = "button";
   quizBtn.className = "btn btn-primary btn-quiz";
   quizBtn.innerHTML = "Quiz";
-  quizBtn.onclick = function(){
+  quizBtn.onclick = function() {
     bindBtn("quiz", i);
   };
 
@@ -29,12 +29,12 @@ function appendCard(row, setName, i) {
   listBtn.type = "button";
   listBtn.className = "btn btn-primary btn-list";
   listBtn.innerHTML = "View List";
-  listBtn.onclick = function(){
+  listBtn.onclick = function() {
     bindBtn("list", i);
   };
 
   var newLayout = document.createElement("div");
-  newLayout.className = "col-sm-4";
+  newLayout.className = "col-md-4";
   var newCard = document.createElement("div");
   newCard.className = "card";
   var cardBody = document.createElement("div");
