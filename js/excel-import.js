@@ -1,5 +1,4 @@
 var importForm = document.getElementById("importFile");
-var tableName = [];
 
 var parseExcel = function(fileName, file) {
   var reader = new FileReader();
@@ -8,6 +7,7 @@ var parseExcel = function(fileName, file) {
   reader.onload = function(e) {
     var json_obj;
     var count = isNaN(localStorage.getItem("count")) ? 0 : parseInt(localStorage.count);
+    var tableName = [];
 
     if (!isNaN(localStorage.getItem("tableName"))) {
       tableName = localStorage.getItem("tableName");
