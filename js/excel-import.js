@@ -1,10 +1,11 @@
 var importForm = document.getElementById("importFile");
+var tableName = [];
 
 var parseExcel = function(fileName, file) {
   var reader = new FileReader();
   var json_obj;
-  var count = isNaN(localStorage.getItem("count"))? 0 : parseInt(localStorage.count);
-  var tableName = [];
+  var count = isNaN(localStorage.getItem("count")) ? 0 : parseInt(localStorage.count);
+
   if (!isNaN(localStorage.getItem("tableName"))) {
     tableName = localStorage.getItem("tableName");
   }
@@ -18,7 +19,7 @@ var parseExcel = function(fileName, file) {
     workbook.SheetNames.forEach(function(sheetName) {
       var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
       json_obj = JSON.stringify(XL_row_object);
-      localStorage.setItem("dataSet"+count, json_obj);
+      localStorage.setItem("dataSet" + count, json_obj);
       count++;
       tableName.push(fileName + " - " + sheetName);
     });
@@ -41,17 +42,17 @@ function fileHandler(name, ele) {
   parseExcel(name, files[0]);
 }
 
-function resetForm(){
+function resetForm() {
   var form = document.getElementById("importForm");
   form.reset();
 }
 
 
-importForm.addEventListener("change", function(){
+importForm.addEventListener("change", function() {
   $("#emptyFileAlert").addClass("d-none");
 }, false);
 
-$("#submit").click(function(){
+$("#submit").click(function() {
   var valid = true;
   if ($("#importName").val() == '') {
     $("#emptyNameAlert").removeClass("d-none");
@@ -65,5 +66,3 @@ $("#submit").click(function(){
     fileHandler($("#importName").val(), importForm);
   }
 });
-
-
