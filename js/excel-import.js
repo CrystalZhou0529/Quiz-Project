@@ -3,14 +3,16 @@ var tableName = [];
 
 var parseExcel = function(fileName, file) {
   var reader = new FileReader();
-  var json_obj;
-  var count = isNaN(localStorage.getItem("count")) ? 0 : parseInt(localStorage.count);
 
-  if (!isNaN(localStorage.getItem("tableName"))) {
-    tableName = localStorage.getItem("tableName");
-  }
 
   reader.onload = function(e) {
+    var json_obj;
+    var count = isNaN(localStorage.getItem("count")) ? 0 : parseInt(localStorage.count);
+
+    if (!isNaN(localStorage.getItem("tableName"))) {
+      tableName = localStorage.getItem("tableName");
+    }
+
     var data = e.target.result;
     var workbook = XLSX.read(data, {
       type: 'binary'
