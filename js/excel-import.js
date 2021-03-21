@@ -23,6 +23,9 @@ var parseExcel = function(fileName, file) {
       json_obj = JSON.stringify(XL_row_object);
       localStorage.setItem("dataSet" + count, json_obj);
       count++;
+      if (!tableName) {
+        tableName = [];
+      }
       tableName.push(fileName + " - " + sheetName);
     });
     localStorage.setItem("count", count);
