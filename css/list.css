@@ -1,0 +1,13 @@
+.main {
+  overflow: auto !important;
+}
+
+.navigation {
+  height: auto;
+}
+
+.mytable {
+  width: 85vw;
+  padding: 30px;
+  margin: 20px;
+}

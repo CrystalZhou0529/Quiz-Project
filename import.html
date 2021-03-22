@@ -1,58 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Import Excel</title>
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="css/index.css">
-    <link rel="stylesheet" href="css/import.css">
-  
-    <!-- jQuery library -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  
-    <!-- Popper JS -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  
-    <!-- Latest compiled JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
-    <!-- Excel Import Support -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/import.css">
+
+  <!-- jQuery library -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+  <!-- Popper JS -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+  <!-- Latest compiled JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+  <!-- Excel Import Support -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/jszip.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.8.0/xlsx.js"></script>
 </head>
+
 <body>
-  <div id="header" class="header">
-    <h2 id="header-text">Vocabulary List Import</h2>
-  </div>
+  <div class="all">
+    <div id="header" class="header">
+      <h2 id="header-text">Vocabulary List Import</h2>
+    </div>
 
-  <div class="container">
-    <form id="importForm">
-      <div class="form-group">
-        <label for="importName">Name</label>
-        <input type="text" class="form-control" id="importName" placeholder="Word Set Name">
-      </div>
-      <div class="alert alert-danger d-none" role="alert" id="emptyNameAlert">
-        Please input the set name!
-      </div>
-      <div class="form-group">
-        <label for="importFile">File</label>
-        <input type="file" class="form-control form-control-file" id="importFile">
-      </div>
-      <div class="alert alert-danger d-none" id="emptyFileAlert">
-        Please choose the Excel file!
-      </div>
-      <input type="button" id="submit" class="btn btn btn-primary" value="Submit">
-    </form>
+    <div class="main">
 
-    <div id="nav">
-      <input type="text" class="btn btn-outline-danger" id="return" value="Return" type="button" onclick="location.href='index.html'">
+      <div class="navigation">
+        <button type="button" class="btn btn-function" id="return" value="Return" onclick="location.href='index.html'">
+          Return
+        </button>
+      </div>
+
+      <div class="myform">
+        <form id="importForm">
+          <div class="form-group">
+            <label for="importName">Name</label>
+            <input type="text" class="form-control" id="importName" placeholder="Word Set Name">
+          </div>
+          <div class="alert alert-danger d-none" role="alert" id="emptyNameAlert">
+            Please input the set name!
+          </div>
+          <div class="form-group">
+            <label for="importFile">File</label>
+            <input type="file" class="form-control form-control-file" id="importFile">
+          </div>
+          <div class="alert alert-danger d-none" id="emptyFileAlert">
+            Please choose the Excel file!
+          </div>
+          <input type="button" id="submit" class="btn btn btn-primary" value="Submit">
+        </form>
+      </div>
+
     </div>
   </div>
+
 
   <script type="text/javascript" src="js/global-var-defn.js"></script>
   <script type="text/javascript" src="js/excel-import.js"></script>
 </body>
+
 </html>

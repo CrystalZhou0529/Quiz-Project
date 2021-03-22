@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -28,69 +29,81 @@
 
 <body>
 
-<div id="header" class="header">
-  <h2 id="header-text">Quiz</h2>
-</div>
+  <div class="all">
+    <div id="header" class="header">
+      <h2 id="header-text">Quiz</h2>
+    </div>
 
-<div class="container" id="main">
-  <div id="problem-type">
-    <h2 id="problem-type-text">Choose the correct translation</h2>
-  </div>
-
-  <div id="problem-info">
-    <h2 id="problem-description">My First Page</h2>
-    <i class='fas fa-play' style='font-size:24px' id="audio-play"></i>
-  </div>
-  
-  <div id="fill-in-blank">
-    <form id="blank-form">
-      <div class="form-group">
-        <input type="text" class="form-control" id="blankInput" placeholder="Enter French">
-      </div>
-    </form>
-  </div>
-
-
-  <div id="choices">
-    <div class="row">
-      <div class="col col-md-6">
-        <button type="button" id="choice1" class="btn btn-outline-secondary btn-block">
-          Lorem ipsum dolor sit.
+    <div class="main">
+      <div class="navigation">
+        <button type="button" class="btn btn-function btn-nav" id="return" value="Return" onclick="location.href='index.html'">
+          Return
         </button>
       </div>
-      <div class="col col-md-6">
-        <button type="button" id="choice2" class="btn btn-outline-secondary btn-block">
-          Lorem ipsum dolor sit.
-        </button>
+
+      <div class="panel" id="main">
+        <div id="problem-type">
+          <h2 id="problem-type-text">Choose the correct translation</h2>
+        </div>
+
+        <div id="problem-info">
+          <h2 id="problem-description">My First Page</h2>
+          <i class='fas fa-play' style='font-size:24px' id="audio-play"></i>
+        </div>
+
+        <div id="fill-in-blank">
+          <form id="blank-form">
+            <div class="form-group">
+              <input type="text" class="form-control" id="blankInput" placeholder="Enter French">
+            </div>
+          </form>
+        </div>
+
+
+        <div id="choices">
+          <div class="row">
+            <div class="col col-md-6">
+              <button type="button" id="choice1" class="btn btn-outline-secondary btn-block">
+                Lorem ipsum dolor sit.
+              </button>
+            </div>
+            <div class="col col-md-6">
+              <button type="button" id="choice2" class="btn btn-outline-secondary btn-block">
+                Lorem ipsum dolor sit.
+              </button>
+            </div>
+          </div>
+          <div class="row" style="padding-top: 15px;">
+            <div class="col col-md-6">
+              <button type="button" id="choice3" class="btn btn-outline-secondary btn-block">
+                Lorem ipsum dolor sit.
+              </button>
+            </div>
+            <div class="col col-md-6">
+              <button type="button" id="choice4" class="btn btn-outline-secondary btn-block">
+                Lorem ipsum dolor sit.
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div id="nav">
+          <input type="button" class="btn btn-warning align-right" id="hint" value="Hint">
+          <input class="btn btn-secondary align-right" type="button" id="skip" value="Skip">
+          <input class="btn btn-primary align-right" type="button" id="next" value="Next">
+        </div>
       </div>
     </div>
-    <div class="row" style="padding-top: 15px;">
-      <div class="col col-md-6">
-        <button type="button" id="choice3" class="btn btn-outline-secondary btn-block">
-          Lorem ipsum dolor sit.
-        </button>
-      </div>
-      <div class="col col-md-6">
-        <button type="button" id="choice4" class="btn btn-outline-secondary btn-block">
-          Lorem ipsum dolor sit.
-        </button>
-      </div>
-    </div>
+
   </div>
 
-  <div id="nav">
-    <input type="text" class="btn btn-outline-danger align-left" id="return" value="Return" type="button" onclick="location.href='index.html'">
-    <input type="button" class="btn btn-warning align-right" id="hint" value="Hint">
-    <input class="btn btn-secondary align-right" type="button" id="skip" value="Skip">
-    <input class="btn btn-primary align-right" type="button" id="next" value="Next">
-  </div>
-</div>
 
-<!-- <script src="js/global-var-defn.js"></script> -->
-<script type="text/javascript" src="js/quiz-nav.js"></script>
+  <!-- <script src="js/global-var-defn.js"></script> -->
+  <script type="text/javascript" src="js/quiz-nav.js"></script>
 
-<script>
-  nextBtn.onclick();
-</script>
+  <script>
+    nextBtn.onclick();
+  </script>
 </body>
+
 </html>
