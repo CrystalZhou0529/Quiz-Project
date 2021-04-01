@@ -1,16 +1,15 @@
 var addContact = function() {
   var name = $("#name").val();
   var age = $("#age").val();
-  var data = JSON.stringify({
-    name: name,
-    age: age
-  });
   $.ajax({
-    url: '/addContact',
-    type: 'GET',
-    data: data,
+    url: '/searchVocab',
+    type: 'POST',
     success: function(res) {
-      getContact();
+      console.log("SUCCESS RECEIVED");
+      console.log(res);
+    },
+    error: function(err) {
+      console.log(err);
     }
   });
 }
@@ -20,7 +19,7 @@ var getContact = function() {
     url: '/test',
     type: 'GET',
     success: function(res) {
-      console.log(res);
+      console.log("Final result: " + res);
     }
   });
 }

@@ -2,13 +2,15 @@ var express = require('express');
 var app = express();
 var routes = require('./routes/index.js');
 var path = require('path');
-var bodyParser = require('bodyParser');
+var bodyParser = require('body-parser');
 var port = process.env.PORT || 8080;
 
+var db = require('./services/db');
+
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use('/', routes);
 app.use(express.static(__dirname + '/public'));
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json()); // this is used for parsing the JSON object from POST
 
 // app.use(express.static(__dirname));
 
@@ -25,15 +27,6 @@ app.listen(port, function(err) {
 
 app.set('views', path.join(__dirname, 'public'));
 
-var contactList = [{
-    name: 'Bob',
-    age: 12
-  },
-  {
-    name: 'Anton',
-    age: 30
-  }
-];
 
 app.get('/test', function(req, res) {
   res.send(contactList);
@@ -43,13 +36,15 @@ app.get('/import', function(req, res) {
   res.sendFile(path.join(__dirname, "/public/import.html"));
 })
 
-app.get('/addContact', function(req, res) {
-  for (var i in req.body) {
-    console.log(i);
+function respond(res, output) {
+  res.send(output);
+}
+
+app.post('/searchVocab', function(req, res) {
+  var sql = "SELECT * FROM test";
+  try {
+    db.query(sql, respond, res);
+  } catch (err) {
+    res.send("{error: error}");
   }
-  /*contactList.push({
-    name: req.body.name,
-    age: req.body.age
-  });*/
-  res.send(contactList);
-})
+});
