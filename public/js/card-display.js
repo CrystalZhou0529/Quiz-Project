@@ -74,10 +74,10 @@ function displayCard(setName, i, setObj) {
 
 function addCards(data) {
   // var data = dbcrud.getVocabSet();
-  console.log(data);
+  // console.log(data);
   var cardsCount = data.length;
   for (var i = 0; i < cardsCount; i++) {
-    displayCard("dataSet" + data[i].id, i, data[i]);
+    displayCard("dataSet" + data[i].id, data[i].id, data[i]);
   }
 }
 

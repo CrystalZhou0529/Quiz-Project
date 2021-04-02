@@ -42,8 +42,9 @@ function respond(res, output) {
 
 app.post('/addSet', function(req, res) {
   var sql = "insert into vocab_set (setname) values (?)";
+  // console.log(req.body);
   try {
-    db.query(sql, respond, res, req.body);
+    db.query(sql, respond, res, [req.body.setname]);
   } catch (err) {
     res.send("{error: error}");
   }
@@ -58,8 +59,10 @@ app.post('/getSet', function(req, res) {
   }
 });
 
-app.post('/searchVocab', function(req, res) {
-  var sql = "SELECT * FROM vocab_set";
+
+app.post('/getWords', function(req, res) {
+  // console.log(req.body);
+  var sql = "SELECT * from words where setid = " + req.body.id;
   try {
     db.query(sql, respond, res);
   } catch (err) {
@@ -67,12 +70,23 @@ app.post('/searchVocab', function(req, res) {
   }
 });
 
-app.post('/getWords', function(req, res) {
-  console.log(req.body);
-  var sql = "SELECT * from words where setid = 1";
+app.post('/addWords', function(req, res) {
+  // console.log(req.body);
+  var sql = "insert into words (fr, en, success, fail, setid) values (?,?,?,?,?)";
+  try {
+    db.query(sql, respond, res, [req.body.fr, req.body.en, req.body.success, req.body.fail,
+      req.body.setid
+    ]);
+  } catch (err) {
+    res.send("{error: error}");
+  }
+});
+
+app.post('/getSetId', function(req, res) {
+  var sql = "SELECT * from vocab_set where setname = '" + req.body.setname + "'";
   try {
     db.query(sql, respond, res);
   } catch (err) {
-    res.send("error: error");
+    res.send("{error: error}");
   }
 });

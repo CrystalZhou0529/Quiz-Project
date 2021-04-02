@@ -1,5 +1,12 @@
 var importForm = document.getElementById("importFile");
 
+function addWords(id, words) {
+  for (var i = 0; i < words.length; i++) {
+    words[i].setid = id;
+    dbcrud.addWords(words[i]);
+  }
+}
+
 var parseExcel = function(fileName, file) {
   var reader = new FileReader();
 
@@ -19,17 +26,16 @@ var parseExcel = function(fileName, file) {
     });
 
     workbook.SheetNames.forEach(function(sheetName) {
-      var XL_row_object = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
-      json_obj = JSON.stringify(XL_row_object);
-      localStorage.setItem("dataSet" + count, json_obj);
+      var sheetWords = XLSX.utils.sheet_to_row_object_array(workbook.Sheets[sheetName]);
+      json_obj = JSON.stringify(sheetWords);
+      // localStorage.setItem("dataSet" + count, json_obj);
       count++;
-      if (!tableName) {
-        tableName = [];
-      }
-      tableName.push(fileName + " - " + sheetName);
+      var tableName = fileName + " - " + sheetName;
+      dbcrud.setVocabSet(tableName, sheetWords);
+      // dbcrud.getSetId(tableName, json_obj);
     });
-    localStorage.setItem("count", count);
-    localStorage.setItem("tableName", JSON.stringify(tableName));
+    // localStorage.setItem("count", count);
+    // localStorage.setItem("tableName", JSON.stringify(tableName));
     alert("Import Success!");
     resetForm();
   };
