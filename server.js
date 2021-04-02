@@ -40,11 +40,39 @@ function respond(res, output) {
   res.send(output);
 }
 
+app.post('/addSet', function(req, res) {
+  var sql = "insert into vocab_set (setname) values (?)";
+  try {
+    db.query(sql, respond, res, req.body);
+  } catch (err) {
+    res.send("{error: error}");
+  }
+});
+
+app.post('/getSet', function(req, res) {
+  var sql = "select * from vocab_set";
+  try {
+    db.query(sql, respond, res);
+  } catch (err) {
+    res.send("error: error");
+  }
+});
+
 app.post('/searchVocab', function(req, res) {
-  var sql = "SELECT * FROM test";
+  var sql = "SELECT * FROM vocab_set";
   try {
     db.query(sql, respond, res);
   } catch (err) {
     res.send("{error: error}");
+  }
+});
+
+app.post('/getWords', function(req, res) {
+  console.log(req.body);
+  var sql = "SELECT * from words where setid = 1";
+  try {
+    db.query(sql, respond, res);
+  } catch (err) {
+    res.send("error: error");
   }
 });

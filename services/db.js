@@ -3,7 +3,7 @@ var config = require('./config');
 
 function query(sql, callback, res, params) {
   var connection = mysql.createConnection(config);
-  connection.query(sql, function(error, results, fields) {
+  connection.query(sql, [params], function(error, results, fields) {
     if (error) throw error;
     // console.log(results);
     str = JSON.stringify(results);
